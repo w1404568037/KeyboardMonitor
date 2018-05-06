@@ -20,6 +20,9 @@ namespace KeyboardMonitor.Common
 		{
 			return File.OpenWrite(logFilePath);
 		}
+		/// <summary>
+		/// 删除本地文件
+		/// </summary>
 		public static void Clear()
 		{
 			if (File.Exists(logFilePath))
@@ -35,17 +38,15 @@ namespace KeyboardMonitor.Common
 		/// <returns></returns>
 		public static void WriteLog(string content)
 		{
-			content = "\n" + content + "\n";
 			fileStream = CreateLogFile();
 			byte[] bytes = System.Text.Encoding.ASCII.GetBytes(content);
 			fileStream.Write(bytes,0,bytes.Length);
 			fileStream.Close();
 		}
 
-		private static void WriteLogSuccess(IAsyncResult ar)
+		public static long GetFileSize()
 		{
-			fileStream.Dispose();
-			fileStream = null;
+			return new FileInfo(logFilePath).Length;
 		}
 	}
 }

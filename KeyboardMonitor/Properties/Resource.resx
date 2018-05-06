@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommitDataInterval" xml:space="preserve">
-    <value>300000</value>
+    <value>30000</value>
     <comment>timer控件提交数据的间隔（毫秒）</comment>
   </data>
   <data name="CommitDataIntervalDefault" xml:space="preserve">
@@ -134,7 +134,7 @@
     <comment>日志文件的相对路径</comment>
   </data>
   <data name="FormDataEmail" xml:space="preserve">
-    <value>2646016915@qq.com</value>
+    <value>383763320@qq.com</value>
     <comment>发送数据的邮箱地址</comment>
   </data>
   <data name="EmailMSTP" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>发送邮件的服务器</comment>
   </data>
   <data name="FormDataEmailPassword" xml:space="preserve">
-    <value>xXx383763320</value>
+    <value>hnlklpxftpzdcbec</value>
     <comment>发送数据的邮箱地址密码</comment>
   </data>
   <data name="ToDataEmail" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment>接收数据的邮箱地址</comment>
   </data>
   <data name="EmailServicePort" xml:space="preserve">
-    <value>465</value>
+    <value>25</value>
     <comment>发送邮件服务器的端口</comment>
   </data>
 </root>

