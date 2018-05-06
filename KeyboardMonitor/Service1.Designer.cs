@@ -36,11 +36,11 @@ namespace KeyboardMonitor
 			// notifyIcon1
 			// 
 			this.notifyIcon1.Icon = global::KeyboardMonitor.Properties.Resource.favicon_20180506111414122;
-			this.notifyIcon1.Text = "键盘监听服务";
+			this.notifyIcon1.Text = "键盘监听服务，仅供学习，如有需要联系2646016915";
 			this.notifyIcon1.Visible = true;
 			this.notifyIcon1.Click += new System.EventHandler(this.AppliectionExit);
 			// 
-			// Service1
+			// KeyboardMonitorService
 			// 
 			this.ServiceName = "KeyboardMonitorService";
 
