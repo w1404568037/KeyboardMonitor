@@ -1,0 +1,38 @@
+{
+	"KeyboardFiltartion":
+	[
+		"F1",
+		"F2",
+		"F3",
+		"F4",
+		"F5",
+		"F6",
+		"F7",
+		"F8",
+		"F9",
+		"F10",
+		"F11",
+		"F12",
+		"Escape",
+		"Tab",
+		"LControlKey, Control",
+		"LWin",
+		"LMenu, Alt",
+		"RMenu, Alt",
+		"Apps",
+		"RControlKey, Control",
+		"Up",
+		"Down",
+		"Left",
+		"Right",
+		"Pause",
+		"PrintScreen",
+		"Delete",
+		"Home",
+		"PageUp",
+		"Clear",
+		"End",
+		"Next",
+		"Insert"
+	]
+}

