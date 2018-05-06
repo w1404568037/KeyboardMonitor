@@ -61,7 +61,7 @@ namespace KeyboardMonitor.Properties {
         }
         
         /// <summary>
-        ///   查找类似 30000 的本地化字符串。
+        ///   查找类似 300000 的本地化字符串。
         /// </summary>
         internal static string CommitDataInterval {
             get {

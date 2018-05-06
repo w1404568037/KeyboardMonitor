@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommitDataInterval" xml:space="preserve">
-    <value>30000</value>
-    <comment>timer控件提交数据的间隔（毫秒）</comment>
+    <value>300000</value>
+    <comment>timer控件提交数据的间隔（毫秒，初始300000，五分钟）</comment>
   </data>
   <data name="CommitDataIntervalDefault" xml:space="preserve">
     <value>10000</value>

